@@ -15,8 +15,9 @@ CREATE TABLE players (
 
 CREATE TABLE matches (
 	id SMALLSERIAL PRIMARY KEY,
-	winner_id INTEGER REFERENCES players (id),
-	loser_id INTEGER REFERENCES players (id)); 
+	winner_id INTEGER REFERENCES players (id) ON DELETE CASCADE,
+	loser_id INTEGER REFERENCES players (id) ON DELETE CASCADE, 
+	CHECK(winner_id != loser_id));
 --
 -- Create views
 -- First, create a view which aggregates wins per player. Left join is used to also

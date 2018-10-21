@@ -6,9 +6,13 @@
 import psycopg2
 
 
-def connect():
+def connect(database_name='tournament'):
     """Connect to the PostgreSQL database.  Returns a database connection."""
-    return psycopg2.connect("dbname=tournament")
+    try:
+        conn = psycopg2.connect("dbname=%s" %database_name)
+        return conn
+    except:
+        print "<error message>"
 
 
 def deleteMatches():
